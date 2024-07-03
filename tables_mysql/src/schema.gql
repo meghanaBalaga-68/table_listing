@@ -1,0 +1,71 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ListType {
+  list_id: ID!
+  firstName: String!
+  LastName: String!
+  email: String!
+  phoneNumber: String!
+  empId: String!
+  shift: String!
+  role: Role!
+  created_at: DateTime!
+}
+
+enum Role {
+  ADMIN
+  WORKER
+  SUPERVISOR
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ActionResponseType {
+  page: Int!
+  next_page: Int!
+  is_next_page: Boolean!
+  pages: Int!
+  records_per_page: Int!
+  total_records: Int!
+  sort_by: String!
+  order: Sort!
+  data: [ListType!]!
+}
+
+enum Sort {
+  ASC
+  DESC
+}
+
+type Query {
+  getAllLists(sort_by: String!, order: String!, page: Int!, records_per_page: Int!): ActionResponseType!
+}
+
+type Mutation {
+  createList(actionInput: ActionsInputDto!, input: CreateListInputDto!): ListType!
+}
+
+input ActionsInputDto {
+  page: Int!
+  next_page: Int!
+  is_next_page: Boolean!
+  pages: Int!
+  records_per_page: Int!
+  total_records: Int!
+  sort_by: String!
+  order: String!
+}
+
+input CreateListInputDto {
+  firstName: String!
+  LastName: String!
+  email: String!
+  phoneNumber: String!
+  shift: String!
+  role: String!
+}
